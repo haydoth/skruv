@@ -1,12 +1,11 @@
-@echo off
 
 set LIBS= C:/storage/engine_dependencies/lib
-set INCLUDES= "C:/storage/engine_dependencies/include"
-set LINKER_FLAGS= user32.lib gdi32.lib kernel32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glfw3.lib
-set COMPILER_OPTIONS= /std:c++20 /Fe:./build/main.exe /Fo:./build/ /EHsc
+set INCLUDES= C:/storage/engine_dependencies/include
+set LINKER_FLAGS= -lopengl32 -lglfw3 -lgdi32
+set COMPILER_OPTIONS= --std=c++20 -fpermissive
 
-call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+set VENDOR= vendor/glad.c
 
-call cl %COMPILER_OPTIONS% src/main.cpp vendor/glad.c /I %INCLUDES% /link %LINKER_FLAGS% /libpath:C:/storage/engine_dependencies/lib
+set SRC= src/core/scene/Entity.cpp src/core/scene/Scene.cpp src/core/scene/SceneModule.cpp src/core/WindowModule.cpp src/core/State.cpp src/main.cpp
 
-"./build/main.exe"
+call g++ -o build/main.exe -g %SRC% %VENDOR% %COMPILER_OPTIONS% -IC:/storage/engine_dependencies/include -LC:/storage/engine_dependencies/lib %LINKER_FLAGS%
