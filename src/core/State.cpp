@@ -23,6 +23,7 @@ namespace Skruv {
         {
             // update modules
             m_WindowModule.Update();
+            // scene module should also be updated each frame lol
         }
     }
     void State::Exit() 
@@ -34,6 +35,17 @@ namespace Skruv {
     {
         Entity guy = GetActiveSceneRef().get()->CreateEntity("guy");
         std::cout << guy.GetComponent<NameComponent>().Name << "\n";
+        
+        std::string basicShaderString = "src/shaders/Basic.shader";
+        ShaderSource src = Shader::ParseShaderSource(basicShaderString);
+        
+        std::cout << "vertex" << "\n";
+        std::cout << src.VertexSource << "\n";
+        
+        std::cout << "fragment" << "\n";
+        std::cout << src.FragmentSource << "\n";
+        
+        Shader basicShader(src);
     }
     
     void State::Run() 

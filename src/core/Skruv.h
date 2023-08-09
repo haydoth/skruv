@@ -6,6 +6,8 @@
 // Macros
 #include "Base.h"
 
+#include "render/Shader.h"
+
 #include "WindowModule.h"
 
 // ECS
