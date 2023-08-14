@@ -1,23 +1,32 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include <iostream>
-#include "core/State.h"
-
-void processInput(GLFWwindow *window);
+#include "core/Skruv.h"
 
 int main()
 {
-    Skruv::State::Instance()->Run();
+    Skruv::State state = Skruv::State();
+    
+    // entity memory is owned by the state!! :)))
+    Skruv::Entity guy = state.scene->CreateEntity("guy");
+    std::cout << guy.GetComponent<Skruv::NameComponent>().Name << "\n";
+    
+    std::string basicShaderString = "src/shaders/Basic.shader";
+    Skruv::ShaderSource src = Skruv::Shader::ParseShaderSource(basicShaderString);
+    
+    std::cout << "vertex" << "\n";
+    std::cout << src.VertexSource << "\n";
+    
+    std::cout << "fragment" << "\n";
+    std::cout << src.FragmentSource << "\n";
+    
+    // maybe shaders should also be owned by the state?
+    // also holy shit make a cleaner solution for adding shader props
+    Skruv::Shader basicShader(
+                              src,
+                              Skruv::ShaderProperties({
+                                                          Skruv::ShaderProperty<glm::vec3>
+                                                          ("u_Color")}));
+    state.shaderLibrary->AddShader("Basic", basicShader);
+    
+    state.Run();
     
     return 0;
-}
-
-// glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
-    glViewport(0, 0, width, height);
 }

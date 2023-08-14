@@ -5,10 +5,11 @@
 
 // Macros
 #include "Base.h"
-
-#include "render/Shader.h"
-
 #include "WindowModule.h"
+
+// Render
+#include "render/Shader.h"
+#include "render/RenderModule.h"
 
 // ECS
 #include "scene/Components.h"

@@ -1,0 +1,6 @@
+[head]
+name = "Test Material"
+shader = "Basic"
+
+[properties]
+u_Color = [ 1.0, 0.0, 1.0 ]

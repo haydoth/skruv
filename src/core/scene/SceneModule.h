@@ -12,13 +12,14 @@ namespace Skruv
     
     class SceneModule 
     {
-        public:
-        
         private:
         
         friend class State;
         
         void Init();
+        void Start();
+        void Update();
+        
         Ref<Scene> m_ActiveScene;
     };
 }

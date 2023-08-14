@@ -1,6 +1,7 @@
 /* date = August 8th 2023 4:28 pm */
 
 #include "../Base.h"
+#include "ShaderProperties.h"
 #include <string>
 
 #ifndef _SHADER_H
@@ -23,7 +24,7 @@ namespace Skruv
     {
         public:
         
-        Shader(ShaderSource src);
+        Shader(ShaderSource src, ShaderProperties props);
         
         unsigned int GetHandle() { return m_Handle; }
         static ShaderSource ParseShaderSource(std::string& path);
@@ -31,6 +32,7 @@ namespace Skruv
         private:
         
         unsigned int m_Handle;
+        ShaderProperties m_Properties;
     };
 }
 

@@ -19,6 +19,16 @@ namespace Skruv
         
     }
     
+    void Scene::Start() 
+    {
+        // start all entities
+    }
+    
+    void Scene::Update() 
+    {
+        // update all entities
+    }
+    
     Entity Scene::CreateEntity(const std::string& name) 
     {
         // not the cleanest code ive written :(, but it should work.

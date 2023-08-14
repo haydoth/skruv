@@ -7,6 +7,7 @@
 
 #include "WindowModule.h"
 #include "scene/SceneModule.h"
+#include "render/RenderModule.h"
 
 #ifndef _STATE_H
 #define _STATE_H
@@ -14,28 +15,16 @@
 namespace Skruv {
     
     class State {
-        protected:
-        
-        State() = default;
-        
-        static inline State* instance;
         
         public:
         
-        State(State &other) = delete;
-        void operator=(const State&) = delete;
-        static State *Instance() {
-            if(instance == nullptr) {
-                return new State();
-            }
-            return instance;
-        }
-        
-        // define this in the source file.
-        // this should create instances of all engine modules and
-        // the game
         void Run();
-        Ref<Scene> GetActiveSceneRef();
+        State();
+        
+        // ideally these shorthand member variables should
+        // get the return value of a lambda function 
+        Scene* scene;
+        ShaderLibrary* shaderLibrary;
         
         private:
         
@@ -44,8 +33,11 @@ namespace Skruv {
         void Update();
         void Exit();
         
+        bool m_LoadedModules;
+        
         WindowModule m_WindowModule;
         SceneModule m_SceneModule;
+        RenderModule m_RenderModule;
     };
 }
 

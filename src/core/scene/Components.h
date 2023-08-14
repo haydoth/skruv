@@ -30,6 +30,17 @@ namespace Skruv
         
         operator const std::string&() { return Name; }
     };
+    /*
+    struct MaterialComponent 
+    {
+        Material material;
+        
+        NameComponent() = default;
+        NameComponent(const NameComponent&) = default;
+        NameComponent(const std::string& name) : Name(name) {}
+        
+        operator const std::string&() { return Name; }
+    };*/
 }
 
 #endif //_COMPONENTS_H

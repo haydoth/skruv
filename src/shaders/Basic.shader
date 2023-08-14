@@ -1,4 +1,4 @@
-#shader vertex
+#section vertex
 
 #version 330 core
 layout (location = 0) in vec3 _position;
@@ -10,13 +10,15 @@ layout (location = 5) in vec3 _color;
 
 out vec3 tmpColor;
 
+uniform vec3 u_Color;
+
 void main()
 {
     gl_Position = vec4(_position, 1.0);
-    tmpColor = _color;
+    tmpColor = u_Color;
 }
 
-#shader fragment
+#section fragment
 
 #version 330 core
 out vec4 FragColor;

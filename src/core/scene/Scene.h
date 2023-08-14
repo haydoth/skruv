@@ -10,6 +10,7 @@
 namespace Skruv 
 {
     class Entity;
+    class SceneModule;
     
     class Scene 
     {
@@ -23,12 +24,10 @@ namespace Skruv
         private:
         
         friend class Entity;
+        friend class SceneModule;
         
-        // TODO: create entity class. every entity should have its own transform component.
-        // the transform keeps track of parent and child transforms, and the entity
-        // that owns it.
-        
-        // Also the this class should maybe extend Entity, since it functions a bit like one.
+        void Start();
+        void Update();
         
         entt::registry m_Registry;
         

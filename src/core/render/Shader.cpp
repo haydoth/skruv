@@ -23,7 +23,7 @@ namespace Skruv
                 continue;
             }
             
-            if(line.find("#shader") != std::string::npos) 
+            if(line.find("#section") != std::string::npos) 
             {
                 if(line.find("vertex") != std::string::npos) 
                 {
@@ -44,7 +44,7 @@ namespace Skruv
         return { strStream[0].str(), strStream[1].str() };
     }
     
-    Shader::Shader(ShaderSource src) 
+    Shader::Shader(ShaderSource src, ShaderProperties props) : m_Properties(props)
     {
         const char* vertexSource = src.VertexSource.c_str();
         const char* fragmentSource = src.FragmentSource.c_str();

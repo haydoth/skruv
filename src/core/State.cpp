@@ -14,6 +14,9 @@ namespace Skruv {
         m_SceneModule = SceneModule();
         m_SceneModule.Init();
         
+        m_RenderModule = RenderModule();
+        m_RenderModule.Init();
+        
         return true;
     }
     
@@ -23,7 +26,13 @@ namespace Skruv {
         {
             // update modules
             m_WindowModule.Update();
-            // scene module should also be updated each frame lol
+            m_SceneModule.Update();
+            m_RenderModule.Update();
+            
+            // set references
+            // idk if i should be doing this tbh
+            scene = m_SceneModule.m_ActiveScene.get();
+            shaderLibrary = &m_RenderModule.m_ShaderLibrary;
         }
     }
     void State::Exit() 
@@ -33,33 +42,27 @@ namespace Skruv {
     
     void State::Start() 
     {
-        Entity guy = GetActiveSceneRef().get()->CreateEntity("guy");
-        std::cout << guy.GetComponent<NameComponent>().Name << "\n";
-        
-        std::string basicShaderString = "src/shaders/Basic.shader";
-        ShaderSource src = Shader::ParseShaderSource(basicShaderString);
-        
-        std::cout << "vertex" << "\n";
-        std::cout << src.VertexSource << "\n";
-        
-        std::cout << "fragment" << "\n";
-        std::cout << src.FragmentSource << "\n";
-        
-        Shader basicShader(src);
+        m_SceneModule.Start();
+    }
+    
+    State::State()
+    {
+        m_LoadedModules = LoadModules();
+        if(m_LoadedModules) 
+        {
+            // set references
+            scene = m_SceneModule.m_ActiveScene.get();
+            shaderLibrary = &m_RenderModule.m_ShaderLibrary;
+        }
     }
     
     void State::Run() 
     {
-        if(LoadModules()) 
+        if(m_LoadedModules) 
         {
             Start();
             Update();
         }
         Exit();
-    }
-    
-    Ref<Scene> State::GetActiveSceneRef() 
-    {
-        return m_SceneModule.m_ActiveScene;
     }
 }
