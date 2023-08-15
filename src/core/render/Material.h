@@ -17,7 +17,8 @@ namespace Skruv
         private:
         
         std::string m_Name;
-        Shader m_Shader;
+        // find a way to construct this without the compiler complaining
+        // Shader m_Shader;
     };
 }
 

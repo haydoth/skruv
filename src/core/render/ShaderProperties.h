@@ -3,6 +3,7 @@
 #include "../Base.h"
 
 #include <string>
+#include <unordered_map>
 
 #ifndef _SHADER_PROPERTIES_H
 #define _SHADER_PROPERTIES_H
@@ -29,9 +30,9 @@ namespace Skruv
     
     struct ShaderProperties 
     {
-        ShaderProperties(List<ShaderPropertyBase> props) : properties(props) {}
+        ShaderProperties(std::unordered_map<std::string, ShaderPropertyBase> props) : properties(props) {}
         
-        List<ShaderPropertyBase> properties;
+        std::unordered_map<std::string, ShaderPropertyBase> properties;
     };
 }
 

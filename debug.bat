@@ -1,1 +1,1 @@
-call start gdb ./build/main.exe
+call start gdb ./build/skruv.exe

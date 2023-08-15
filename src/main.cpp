@@ -19,11 +19,11 @@ int main()
     
     // maybe shaders should also be owned by the state?
     // also holy shit make a cleaner solution for adding shader props
-    Skruv::Shader basicShader(
-                              src,
-                              Skruv::ShaderProperties({
-                                                          Skruv::ShaderProperty<glm::vec3>
-                                                          ("u_Color")}));
+    
+    std::string u_Color = "u_Color";
+    Skruv::ShaderProperties shaderProps = Skruv::ShaderProperties({{u_Color, Skruv::ShaderProperty<glm::vec3>(u_Color)}});
+    
+    Skruv::Shader basicShader(src, shaderProps);
     state.shaderLibrary->AddShader("Basic", basicShader);
     
     state.Run();

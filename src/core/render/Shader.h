@@ -2,7 +2,12 @@
 
 #include "../Base.h"
 #include "ShaderProperties.h"
+
+#include <glad/glad.h>
+#include <glm/ext.hpp>
+
 #include <string>
+#include <type_traits>
 
 #ifndef _SHADER_H
 #define _SHADER_H
@@ -26,8 +31,28 @@ namespace Skruv
         
         Shader(ShaderSource src, ShaderProperties props);
         
+        template <typename T> void SetProperty(std::string name, T value) 
+        {
+            m_Properties.properties[name] = value;
+            
+            if (tag<T> == tag<int> ||
+                tag<T> == tag<bool>) 
+            {
+                glUniform1i(glGetUniformLocation(m_Handle, name.c_str()), (int)value); 
+            }
+            if (tag<T> == tag<float>) 
+            {
+                glUniform1f(glGetUniformLocation(m_Handle, name.c_str()), value); 
+            }
+            if (tag<T> == tag<glm::vec3>) 
+            {
+                glUniform3f(glGetUniformLocation(m_Handle, name.c_str()), value.x, value.y, value.z);
+            }
+        }
         unsigned int GetHandle() { return m_Handle; }
         static ShaderSource ParseShaderSource(std::string& path);
+        
+        
         
         private:
         

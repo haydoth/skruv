@@ -23,11 +23,11 @@ load_paths = {
 
 commands = {
  .build = { .out = "*compilation*", .footer_panel = true, .save_dirty_files = true,
-   .win = "build.bat",
+   .win = "build2.bat",
    .linux = "./build.sh",
    .mac = "./build.sh", },
  .run = { .out = "*run*", .footer_panel = true, .save_dirty_files = false,
-   .win = ".\build\\main.exe",
+   .win = ".\build\\skruv.exe",
    .linux = "./build/main.exe",
    .mac = "./build/main.exe", },
  .debug = { .out = "*debug*", .footer_panel = true, .save_dirty_files = false,
