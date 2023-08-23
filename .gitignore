@@ -1,3 +1,5 @@
 .4coder
 build/CMakeFiles/
 .obj
+.bat
+build/CMakeCache.txt

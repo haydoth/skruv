@@ -1,7 +1,7 @@
-#include "Scene.h"
+#include "core/scene/Scene.h"
 
-#include "Entity.h"
-#include "Components.h"
+#include "core/scene/Entity.h"
+#include "core/scene/Components.h"
 
 //#include "State.h"
 

@@ -1,4 +1,4 @@
-#include "Entity.h"
+#include "core/scene/Entity.h"
 
 namespace Skruv 
 {

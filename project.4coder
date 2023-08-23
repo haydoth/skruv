@@ -1,5 +1,5 @@
 version(2);
-project_name = "main.exe";
+project_name = "skruv.exe";
 patterns = {
 "*.c",
 "*.cpp",

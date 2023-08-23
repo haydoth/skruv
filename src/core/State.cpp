@@ -1,8 +1,7 @@
-#include "State.h"
+#include "core/State.h"
+#include "core/Skruv.h"
 
 #include <iostream>
-
-#include "Skruv.h"
 
 namespace Skruv {
     

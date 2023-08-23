@@ -1,6 +1,6 @@
-#include "SceneModule.h"
+#include "core/scene/SceneModule.h"
 
-#include "Scene.h"
+#include "core/scene/Scene.h"
 
 namespace Skruv 
 {

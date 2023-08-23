@@ -1,6 +1,6 @@
-#include "RenderModule.h"
+#include "core/render/RenderModule.h"
 
-#include "ShaderLibrary.h"
+#include "core/render/ShaderLibrary.h"
 
 namespace Skruv 
 {
